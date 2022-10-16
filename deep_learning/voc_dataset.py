@@ -1,7 +1,4 @@
-''' --------------------------------------------------------
-Written by Yufei Ye (https://github.com/JudyYe)
-Edited by Anirudh Chakravarthy (https://github.com/anirudh-chakravarthy)
--------------------------------------------------------- '''
+
 import os
 import xml.etree.ElementTree as ET
 
@@ -204,7 +201,7 @@ class VOCDataset(Dataset):
         # turn topn_proposisals to tensor
         topn_proposals = torch.tensor(np.array(topn_proposals)).float()
         ret = {}
-        # to be save pad everything, but you shouldn't have to pad image and label
+        # to be safe pad everything, but you shouldn't have to pad image and label
         # it has to see everything, don't collate here. 
         #print(gt_boxes, "gt_boxes_dataloader")
         ret['image'] = img
@@ -244,12 +241,6 @@ def collate_fn(batch):
             new_dict[key] = torch.stack(values)
         #else:
             #new_dict[key] = values
-    #print("poop")
-    #print(new_dict)
-    #print("image")
-    #print(type(new_dict["image"]))
-    #print(new_dict["image"].shape)
-    #raise Exception
-    #print("shloop")
+
     return new_dict
 
